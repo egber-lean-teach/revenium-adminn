@@ -46,4 +46,31 @@ export default class TextService {
       throw error;
     }
   }
+
+  public async putText(newText: IDataItem): Promise<{ message: string }> {
+    const { id } = newText;
+    try {
+      const texts = await this.textRepository.getTexts(); // Get all texts
+      const textFoundById = await this.textRepository.getTextById(id);
+      if (!textFoundById) return { message: "not found" };
+
+      texts[id] = newText; // Change text by id for new text
+      return await this.textRepository.postText(texts);
+    } catch (error: unknown) {
+      throw error;
+    }
+  }
+
+  public async deleteText(id: string): Promise<{ message: string }> {
+    try {
+      const texts = await this.textRepository.getTexts();
+      const textById = await this.textRepository.getTextById(id);
+
+      if (!textById) return { message: "not found" };
+      delete texts[id];
+      return await this.textRepository.postText(texts);
+    } catch (error: unknown) {
+      throw error;
+    }
+  }
 }

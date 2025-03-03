@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import UtilApplication from "@/app/api/utils/util.application";
-import { S3Model } from "@/app/api/models";
+import { IDataItem, S3Model } from "@/app/api/models";
 
 @injectable()
 export default class TextRepository {
@@ -11,8 +11,16 @@ export default class TextRepository {
   public async getTexts(): Promise<S3Model> {
     try {
       const data = await this.utilApplication.loadJsonS3();
-      console.log("data", data);
       return data;
+    } catch (error: unknown) {
+      throw error;
+    }
+  }
+
+  public async getTextById(id: string): Promise<IDataItem> {
+    try {
+      const data = await this.utilApplication.loadJsonS3();
+      return data[id];
     } catch (error: unknown) {
       throw error;
     }
