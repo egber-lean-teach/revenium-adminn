@@ -9,6 +9,7 @@ import {
   UserButton,
 } from "@clerk/nextjs";
 import "./globals.css";
+import { Header, Sidebar } from "@/ui/molecules";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -35,9 +36,13 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          className={`${geistSans.variable} ${geistMono.variable} antialiased w-[100vw]`}
         >
-          {children}
+          <Header />
+          <div className="flex w-[100vw]">
+            <Sidebar />
+            <main className="w-[82vw] p-6">{children}</main>
+          </div>
         </body>
       </html>
     </ClerkProvider>

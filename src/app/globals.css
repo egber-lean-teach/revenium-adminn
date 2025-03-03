@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+:root {
+  --color-gray-light: rgb(250, 250, 250);
+  --color-gray-light-two: rgb(245, 245, 245);
+  --color-gray-light-hover: rgb(234, 234, 234);
+  --color-text-gray: rgb(83, 83, 83);
+  --color-text-gray-hover: rgb(31, 31, 31);
+}
+
 html {
   box-sizing: border-box;
 }
