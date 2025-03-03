@@ -3,10 +3,10 @@ import {
   GetObjectCommand,
   PutObjectCommand,
 } from "@aws-sdk/client-s3";
-import { IBucket, IBucketCreate } from "../../core/application/interfaces";
+import { IBucket, IBucketCreate } from "@/app/core/application/interfaces";
 import { injectable } from "tsyringe";
-import s3Data from "../config/s3";
-import { IS3Model } from "../models/s3.model";
+import s3Data from "@/app/api/config/s3";
+import { S3Model } from "@/app/api/models";
 
 @injectable()
 export default class UtilApplication {
@@ -22,7 +22,7 @@ export default class UtilApplication {
     });
   }
 
-  public async loadJsonS3(): Promise<IS3Model> {
+  public async loadJsonS3(): Promise<S3Model> {
     const params: IBucket = {
       Bucket: s3Data.bucketName,
       Key: s3Data.key,
@@ -44,7 +44,7 @@ export default class UtilApplication {
     }
   }
 
-  public async saveJsonS3(newData: IS3Model): Promise<{ message: string }> {
+  public async saveJsonS3(newData: S3Model): Promise<{ message: string }> {
     const params: IBucketCreate<string> = {
       Bucket: s3Data.bucketName,
       Key: s3Data.key,
@@ -56,7 +56,7 @@ export default class UtilApplication {
       const command = new PutObjectCommand(params);
       await this.s3Client.send(command);
       return {
-        message: "Create organization success",
+        message: "Create text success",
       };
     } catch (error: unknown) {
       console.log({
@@ -64,5 +64,178 @@ export default class UtilApplication {
       });
       throw new Error(`Error with the saveJsonS3 ${error}`);
     }
+  }
+
+  public static verifyAllParams(...fields: (number | string)[]): boolean {
+    return fields.every((field) => field);
+  }
+
+  public static generateKey(
+    category: string,
+    subcategory: string,
+    name: string
+  ): string {
+    return `${category}Category%${subcategory}Subcategory%${name}Name`;
+  }
+
+  public static verifySpecialSymbols(value: string): boolean {
+    const specialSymbols: string[] = [
+      ".",
+      ",",
+      ";",
+      ":",
+      "!",
+      "?",
+      "'",
+      '"',
+      "(",
+      ")",
+      "[",
+      "]",
+      "{",
+      "}",
+      "...",
+      "-",
+      "–",
+      "—",
+      "«",
+      "»",
+      "‘",
+      "’",
+      "“",
+      "”",
+      "+",
+      "-",
+      "*",
+      "/",
+      "=",
+      "≠",
+      "<",
+      ">",
+      "≤",
+      "≥",
+      "%",
+      "√",
+      "∞",
+      "∫",
+      "∑",
+      "π",
+      "°",
+      "±",
+      "$",
+      "€",
+      "£",
+      "¥",
+      "¢",
+      "₹",
+      "₽",
+      "@",
+      "#",
+      "&",
+      "|",
+      "\\",
+      "~",
+      "^",
+      "_",
+      "§",
+      "¶",
+      "©",
+      "®",
+      "™",
+      "←",
+      "→",
+      "↑",
+      "↓",
+      "↔",
+      "↕",
+      "↨",
+      "⇐",
+      "⇒",
+      "⇑",
+      "⇓",
+      "♩",
+      "♪",
+      "♫",
+      "♬",
+      "♭",
+      "♮",
+      "♯",
+      "♔",
+      "♕",
+      "♖",
+      "♗",
+      "♘",
+      "♙",
+      "♚",
+      "♛",
+      "♜",
+      "♝",
+      "♞",
+      "♟",
+      "♠",
+      "♣",
+      "♥",
+      "♦",
+      "☉",
+      "☽",
+      "☿",
+      "♀",
+      "♁",
+      "♂",
+      "♃",
+      "♄",
+      "♅",
+      "♆",
+      "♇",
+      "😀",
+      "😂",
+      "❤️",
+      "👍",
+      "🔥",
+      "✨",
+      "🎉",
+      "🚀",
+      "🌍",
+      "🍕",
+      "&nbsp;",
+      "&copy;",
+      "&reg;",
+      "&trade;",
+      "&amp;",
+      "&lt;",
+      "&gt;",
+      "&quot;",
+      "&apos;",
+      "★",
+      "☆",
+      "☑",
+      "☐",
+      "✂",
+      "✉",
+      "✈",
+      "✏",
+      "✍",
+      "✓",
+      "✗",
+      "☦",
+      "☪",
+      "☮",
+      "☯",
+      "✝",
+    ];
+
+    const verifiedValue = value
+      .split("")
+      .map((letter) => specialSymbols.includes(letter));
+
+    if (verifiedValue.includes(true)) return true;
+    return false;
+  }
+
+  public static removeSpace(...values: string[]): string[] {
+    const newValues: string[] = values.map((value) =>
+      value.split(" ").join("_")
+    );
+    return newValues;
   }
 }

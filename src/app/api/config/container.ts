@@ -1,6 +1,6 @@
 import { container } from "tsyringe";
-import { OrganizationService } from "../services/organization.service";
-import { OrganizationRepository } from "../repositories/organization.repository";
+import TextService from "../services/texts.service";
+import TextRepository from "../repositories/texts.repository";
 
-container.registerSingleton<OrganizationService>(OrganizationService);
-container.registerSingleton<OrganizationRepository>(OrganizationRepository);
+container.registerSingleton<TextService>(TextService);
+container.registerSingleton<TextRepository>(TextRepository);

@@ -1,3 +1,3 @@
-import type { IOrganizationModel } from "./organization.model";
+import type { IDataItem, S3Model } from "./s3.model";
 
-export { IOrganizationModel };
+export { IDataItem, S3Model };
