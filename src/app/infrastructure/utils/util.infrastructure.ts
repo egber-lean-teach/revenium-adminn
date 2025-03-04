@@ -1,5 +1,5 @@
 export class UtilInfrastructure {
-  private baseUrl: string = "/api";
+  private baseUrl: string = "http://localhost:3000/api";
 
   constructor(baseUrlClient?: string) {
     this.baseUrl = baseUrlClient || this.baseUrl;
@@ -30,8 +30,13 @@ export class UtilInfrastructure {
   public async get<T>(endpoint: string): Promise<T> {
     try {
       const headers = this.getHeaders();
-      const response = await this.fetApi(`/api/organizations`, "GET", headers);
+      const response = await this.fetApi(
+        `${this.baseUrl}/${endpoint}`,
+        "GET",
+        headers
+      );
       console.log("response", response);
+      return await response.json();
     } catch (error: unknown) {
       throw error;
     }

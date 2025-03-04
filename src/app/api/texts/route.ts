@@ -1,5 +1,6 @@
-import { NextRequest, NextResponse } from "next/server";
+import "../index";
 import { container } from "tsyringe";
+import { NextRequest, NextResponse } from "next/server";
 import TextService from "@/app/api/services/texts.service";
 import UtilApplication from "../utils/util.application";
 

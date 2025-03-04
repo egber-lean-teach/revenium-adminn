@@ -1,3 +1,3 @@
-import OrganizationService from "./organization.service";
+import TextService from "./text.service";
 
-export { OrganizationService };
+export { TextService };

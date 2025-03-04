@@ -1,6 +1,13 @@
-import { OrganizationService } from "@/app/infrastructure/services";
+import { TextService } from "@/app/infrastructure/services";
+import { ManageUser } from "@/ui/atoms";
+
 import { DashboardSectionOrganisms } from "@/ui/organisms";
 
 export default async function DashboardView() {
-  return <DashboardSectionOrganisms />;
+  const response = await TextService.getTexts();
+  return (
+    <ManageUser>
+      <DashboardSectionOrganisms response={response} />
+    </ManageUser>
+  );
 }

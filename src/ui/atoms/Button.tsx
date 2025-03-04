@@ -1,29 +1,32 @@
 interface IVariant {
   default: string;
-  outline: string;
-  secondary: string;
+  second: string;
+  third: string;
 }
 interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant: "default" | "outline" | "secondary";
-  text: string;
+  variant: "default" | "second" | "third";
+  children: React.ReactNode;
 }
 
 export default function Button({
   variant,
-  text,
+  children,
   ...props
 }: IButtonProps): React.ReactNode {
   const classVariant: IVariant = {
-    default: "bg-transparent border-gray-100 hover:bg-gray-200",
-    outline: "bg-blue border-none hover:bg-blue400",
-    secondary: "bg-[#1d1d1d] border-none text-white",
+    default:
+      "bg-transparent border-[var(--color-gray-light-three)] hover:bg-gray-100 text-[1.2rem]",
+    second:
+      "bg-[var(--color-gray-light-three)] hover:bg-[var(--color-gray-light-hover)] border-none",
+    third:
+      "bg-[var(--color-text-gray-hover)] hover:bg-[var(--color-text-gray-hover-two)] text-white text-[.9rem] font-bold",
   };
   return (
     <button
-      className={`border-2 rounded-[6px] p-2 cursor-pointer px-6 ${classVariant[variant]}`}
+      className={`border-2 rounded-[6px] p-2 cursor-pointer px-6 flex items-center gap-1 ${classVariant[variant]}`}
       {...props}
     >
-      {text}
+      {children}
     </button>
   );
 }
