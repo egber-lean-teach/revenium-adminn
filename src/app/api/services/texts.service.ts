@@ -65,9 +65,13 @@ export default class TextService {
     try {
       const texts = await this.textRepository.getTexts();
       const textById = await this.textRepository.getTextById(id);
+      console.log("textBuId", textById);
 
+      console.log("texts---", texts);
       if (!textById) return { message: "not found" };
       delete texts[id];
+
+      console.log("texts---", texts);
       return await this.textRepository.postText(texts);
     } catch (error: unknown) {
       throw error;

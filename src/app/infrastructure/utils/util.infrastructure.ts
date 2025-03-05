@@ -57,4 +57,19 @@ export class UtilInfrastructure {
       throw error;
     }
   }
+
+  public async delete<T>(endpoint: string, id: string): Promise<T> {
+    try {
+      const headers = this.getHeaders();
+      const response = await this.fetApi(
+        `${this.baseUrl}/${endpoint}?id=${id}`,
+        "DELETE",
+        headers
+      );
+      console.log("response", response);
+      return await response.json();
+    } catch (error: unknown) {
+      throw error;
+    }
+  }
 }

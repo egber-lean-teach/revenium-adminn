@@ -75,6 +75,7 @@ export default function DashboardSectionOrganisms({
     setModalLoadingContent(true);
     setModalSave(true);
     setModalCreate(false);
+    router.push("/help_text");
   };
 
   return (
@@ -103,7 +104,7 @@ export default function DashboardSectionOrganisms({
             className="cursor-pointer border-[var(--color-gray-light-three)] border-1 rounded-[6px] p-2 hover:bg-[var(--color-gray-light-three)]"
             onClick={() => {
               setModalLoadingContent(true);
-              router.push("/");
+              router.push("/help_text");
             }}
           >
             <IconReload />

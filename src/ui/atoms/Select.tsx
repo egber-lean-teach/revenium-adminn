@@ -17,8 +17,8 @@ export default function Select<B>({
       id={id}
       {...props}
     >
-      {options.map((value) => (
-        <option key={`${value}${id}${name}/1`} className="w-full">
+      {options.map((value, index) => (
+        <option key={`${value}${id}${name}/${index}`} className="w-full">
           {value}
         </option>
       ))}

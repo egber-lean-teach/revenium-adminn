@@ -32,7 +32,7 @@ export default function FormFieldSelect<B>({
   const [showNewInput, setShowNewInput] = useState<boolean>(false);
   const [showError, setShowError] = useState<string>("");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
 
     if (!value) {
@@ -40,6 +40,7 @@ export default function FormFieldSelect<B>({
       return;
     }
     const verify: boolean = UtilApplicationInternal.verifySpace(value);
+    console.log("verify", verify);
     if (verify) {
       setShowError(errors[1]);
       return;

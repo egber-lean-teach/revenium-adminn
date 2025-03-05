@@ -6,6 +6,8 @@ import { ITextResponseComplete } from "@/app/core/application/dto/textResponse";
 import { UtilApplicationInternal } from "@/app/core/application/utils/util.application";
 import ModalContent from "./ModalContent";
 import { useState } from "react";
+import { TextService } from "@/app/infrastructure/services";
+import { useRouter } from "next/navigation";
 
 interface ITableProps {
   headers: string[];
@@ -13,12 +15,19 @@ interface ITableProps {
 }
 
 export default function Table({ headers, body }: ITableProps): React.ReactNode {
+  const router = useRouter();
   const handleClickEdit = (): void => {
     console.log("edit");
   };
 
   const handleClickMore = (): void => {
     console.log("more");
+  };
+
+  const handleClickDelete = async (id: string): Promise<void> => {
+    const data = await TextService.deleteText(id);
+    router.push("/help_text");
+    console.log("data", data);
   };
 
   return (
@@ -70,7 +79,10 @@ export default function Table({ headers, body }: ITableProps): React.ReactNode {
                   <Button variant="default" onClick={handleClickEdit}>
                     <IconEdit />
                   </Button>
-                  <Button variant="fourth" onClick={handleClickEdit}>
+                  <Button
+                    variant="fourth"
+                    onClick={() => handleClickDelete(Key)}
+                  >
                     <IConTrash />
                   </Button>
                 </div>

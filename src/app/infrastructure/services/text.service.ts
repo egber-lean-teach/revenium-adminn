@@ -65,6 +65,18 @@ class TextService {
       throw error;
     }
   }
+
+  public async deleteText(id: string): Promise<IResponse<ITextResponse>> {
+    try {
+      const response = await this.utilInfrastructure.delete<
+        IResponse<ITextResponse>
+      >("texts", id);
+      console.log("response delete text", response);
+      return response;
+    } catch (error: unknown) {
+      throw error;
+    }
+  }
 }
 
 const organizationService = new TextService();

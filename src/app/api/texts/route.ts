@@ -176,7 +176,9 @@ export async function DELETE(req: NextRequest): Promise<NextResponse> {
     const textService = container.resolve(TextService);
     const textDelete = await textService.deleteText(id);
 
-    if (!textDelete) {
+    console.log("text delete", textDelete);
+
+    if (textDelete.message === "not found") {
       return NextResponse.json(
         {
           message: "Text not found",

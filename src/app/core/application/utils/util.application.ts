@@ -1,3 +1,5 @@
+import { TextService } from "@/app/infrastructure/services";
+
 export class UtilApplicationInternal {
   public static firstFourLetter(value: string): string {
     const [letter1, letter2, letter3, letter4] = value;
@@ -30,6 +32,8 @@ export class UtilApplicationInternal {
     subcategory: string,
     name: string
   ): string {
-    return `${category}Category%${subcategory}Subcategory%${name}Name`;
+    const generate: string = `${category}Category_${subcategory}Subcategory_${name}Name_${category[0]}${subcategory[0]}${name[0]}`;
+    console.log("generate", generate);
+    return generate;
   }
 }
