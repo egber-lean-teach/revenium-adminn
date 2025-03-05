@@ -7,6 +7,10 @@ import ManageColumn from "./ManageColumn";
 import IconContent from "./IconContent";
 import ManageUser from "./manageUser";
 import Copy from "./Copy";
+import Input from "./input";
+import Select from "./Select";
+import TextArea from "./TextArea";
+import VerifyChange from "./VerifyChange";
 
 export {
   Button,
@@ -18,4 +22,8 @@ export {
   IconContent,
   ManageUser,
   Copy,
+  Input,
+  Select,
+  TextArea,
+  VerifyChange,
 };

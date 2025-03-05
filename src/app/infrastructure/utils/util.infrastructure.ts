@@ -41,4 +41,20 @@ export class UtilInfrastructure {
       throw error;
     }
   }
+
+  public async post<B, T>(endpoint: string, request: B): Promise<T> {
+    try {
+      const headers = this.getHeaders();
+      const response = await this.fetApi<B>(
+        `${this.baseUrl}/${endpoint}`,
+        "POST",
+        headers,
+        request
+      );
+      console.log("response", response);
+      return await response.json();
+    } catch (error: unknown) {
+      throw error;
+    }
+  }
 }

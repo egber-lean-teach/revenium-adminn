@@ -10,6 +10,11 @@ import { LuList as IconList } from "react-icons/lu";
 import { HiOutlinePlusSm as IconPlus } from "react-icons/hi";
 import { IoClose as IConClose } from "react-icons/io5";
 import { LuCopy as IConCopy } from "react-icons/lu";
+import { FaRegTrashAlt as IConTrash } from "react-icons/fa";
+import { FaCheck as IconCheck } from "react-icons/fa6";
+import { CiSaveUp2 as IConSave } from "react-icons/ci";
+import { FaSave as IConSaveTwo } from "react-icons/fa";
+import { TbLockOpen2 as IConBlock } from "react-icons/tb";
 
 export {
   IconArrowChange,
@@ -24,4 +29,9 @@ export {
   IconPlus,
   IConClose,
   IConCopy,
+  IconCheck,
+  IConTrash,
+  IConSave,
+  IConSaveTwo,
+  IConBlock,
 };

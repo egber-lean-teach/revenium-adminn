@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Header, Sidebar } from "@/ui/molecules";
+import { Header, LoadingContent, Sidebar } from "@/ui/molecules";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,6 +17,7 @@ export default function RootLayout({
       <div className="flex w-[100vw]">
         <Sidebar />
         <main className="w-[82vw] p-6">{children}</main>
+        <LoadingContent />
       </div>
     </>
   );

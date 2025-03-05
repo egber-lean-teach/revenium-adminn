@@ -11,6 +11,7 @@
   --color-text-gray-hover-two: rgb(46, 46, 46);
   --color-green: RGB(126, 180, 66);
   --color-green-dark: #1a8f4a;
+  --color-white-opacity: #ffffffd2;
 }
 
 html {

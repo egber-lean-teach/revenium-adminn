@@ -2,9 +2,10 @@ interface IVariant {
   default: string;
   second: string;
   third: string;
+  fourth: string;
 }
 interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant: "default" | "second" | "third";
+  variant: "default" | "second" | "third" | "fourth";
   children: React.ReactNode;
 }
 
@@ -20,6 +21,8 @@ export default function Button({
       "bg-[var(--color-gray-light-three)] hover:bg-[var(--color-gray-light-hover)] border-none",
     third:
       "bg-[var(--color-text-gray-hover)] hover:bg-[var(--color-text-gray-hover-two)] text-white text-[.9rem] font-bold",
+    fourth:
+      "bg-transparent border-[var(--color-gray-light-three)] hover:bg-red-400 hover:text-white transition-colors duration-200 ease-in",
   };
   return (
     <button

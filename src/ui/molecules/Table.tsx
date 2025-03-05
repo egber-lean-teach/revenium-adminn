@@ -1,9 +1,11 @@
 "use client";
 
-import { Button, Copy, IconContent, Loading } from "../atoms";
-import { IConCopy, IconDown, IconEdit } from "../../../public/icons";
+import { Button, Copy, IconContent, IconText, Loading } from "../atoms";
+import { IConCopy, IconDown, IconEdit, IConTrash } from "../../../public/icons";
 import { ITextResponseComplete } from "@/app/core/application/dto/textResponse";
 import { UtilApplicationInternal } from "@/app/core/application/utils/util.application";
+import ModalContent from "./ModalContent";
+import { useState } from "react";
 
 interface ITableProps {
   headers: string[];
@@ -27,7 +29,7 @@ export default function Table({ headers, body }: ITableProps): React.ReactNode {
             <th
               className={`pt-2 pb-2 text-[var(--color-text-gray)] text-start font-medium text-[.9rem] ${
                 header === "ID" ? "flex justify-center" : ""
-              } ${header === "Actions" ? "flex justify-center" : ""}`}
+              } `}
               key={index}
             >
               {header.toUpperCase()}
@@ -68,11 +70,8 @@ export default function Table({ headers, body }: ITableProps): React.ReactNode {
                   <Button variant="default" onClick={handleClickEdit}>
                     <IconEdit />
                   </Button>
-                  <Button variant="default" onClick={handleClickMore}>
-                    <span className="mt-[-16px] text-[1.3rem]">...</span>
-                    <span>
-                      <IconDown />
-                    </span>
+                  <Button variant="fourth" onClick={handleClickEdit}>
+                    <IConTrash />
                   </Button>
                 </div>
               </td>

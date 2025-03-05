@@ -11,8 +11,6 @@ export default function ManageUser({
   const { user } = useUser();
   const { setUser } = useUserState((state) => state);
 
-  console.log("user", user);
-
   useEffect(() => {
     if (user) {
       const {

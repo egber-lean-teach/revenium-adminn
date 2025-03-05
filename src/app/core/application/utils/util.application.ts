@@ -14,4 +14,22 @@ export class UtilApplicationInternal {
       });
     }
   }
+
+  public static verifySpace(value: string): boolean {
+    console.log("value.---", value);
+    const separateValue = value.split("");
+    const verify = separateValue.find((letter: string) => {
+      if (letter === " ") return true;
+    });
+    if (!verify) return false;
+    return true;
+  }
+
+  public static generateKey(
+    category: string,
+    subcategory: string,
+    name: string
+  ): string {
+    return `${category}Category%${subcategory}Subcategory%${name}Name`;
+  }
 }
