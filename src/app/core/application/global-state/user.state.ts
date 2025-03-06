@@ -2,11 +2,11 @@ import { create } from "zustand";
 
 interface IUserProfile {
   id: string;
-  firstName: string | null;
-  fullName: string | null;
-  lastName: string | null;
-  imageUrl: string | null;
-  emailAddress: string | undefined;
+  firstName: string;
+  fullName: string;
+  lastName: string;
+  imageUrl: string;
+  emailAddress: string;
 }
 interface IUserState {
   user: IUserProfile;

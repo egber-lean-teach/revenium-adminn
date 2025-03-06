@@ -27,7 +27,7 @@ export default function IconContent({
             <ul>
               <li className="flex gap-4">
                 <div className="w-[30px] h-[30px] rounded-[50%] bg-[var(--color-green)] flex justify-center items-center text-white font-bold">
-                  <p>{user?.firstName[0] || "User"}</p>
+                  <p>{(user && user.firstName[0]) || "User"}</p>
                 </div>
                 <div>
                   <h6>{user?.fullName}</h6>

@@ -24,10 +24,10 @@ export default function ManageUser({
 
       setUser({
         id,
-        emailAddress: primaryEmailAddress?.emailAddress,
-        firstName,
-        fullName,
-        lastName,
+        emailAddress: primaryEmailAddress?.emailAddress || "",
+        firstName: firstName || "",
+        fullName: fullName || "",
+        lastName: lastName || "",
         imageUrl,
       });
     }
