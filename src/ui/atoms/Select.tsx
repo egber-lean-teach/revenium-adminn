@@ -4,6 +4,7 @@ interface ISelectProps<B>
   id: string;
   options: B[];
 }
+
 export default function Select<B>({
   name,
   id,
@@ -19,7 +20,7 @@ export default function Select<B>({
     >
       {options.map((value, index) => (
         <option key={`${value}${id}${name}/${index}`} className="w-full">
-          {value}
+          {String(value)}
         </option>
       ))}
     </select>
