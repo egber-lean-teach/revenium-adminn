@@ -22,7 +22,12 @@ import {
 import { useModalLoadingContentState } from "@/app/core/application/global-state";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { IModalMessage, IText } from "@/app/core/application/interfaces";
+import {
+  IModalMessage,
+  initialModalMessage,
+  IText,
+  textInitial,
+} from "@/app/core/application/interfaces";
 import { UtilApplicationInternal } from "@/app/core/application/utils/util.application";
 import { TextService } from "@/app/infrastructure/services";
 
@@ -39,17 +44,12 @@ export default function DashboardSectionOrganisms({
   const router = useRouter();
   const { modalLoadingContent, setModalLoadingContent } =
     useModalLoadingContentState((state) => state);
-
-  const [modalCreate, setModalCreate] = useState<boolean>(false);
-  const [modalSave, setModalSave] = useState<boolean>(false);
+  const [modalCreate, setModalCreate] =
+    useState<IModalMessage>(initialModalMessage);
+  const [modalSave, setModalSave] =
+    useState<IModalMessage>(initialModalMessage);
   const [showErrorCreate, setShowErroCreate] = useState<boolean>(false);
-  const [formCreate, setFormCreate] = useState<IText>({
-    category: "",
-    subcategory: "",
-    description: "",
-    id: "",
-    name: "",
-  });
+  const [formCreate, setFormCreate] = useState<IText>(textInitial);
 
   const tableHeaders: string[] = [
     "ID",
@@ -71,10 +71,21 @@ export default function DashboardSectionOrganisms({
       setShowErroCreate(true);
       return;
     }
+    console.log("form data", formCreate);
+
     const data = await TextService.createText(formCreate);
+    console.log("data", data);
     setModalLoadingContent(true);
-    setModalSave(true);
-    setModalCreate(false);
+    setModalCreate({
+      message: data.message,
+      code: data.statusCode,
+      status: false,
+    });
+    setModalSave({
+      message: data.message,
+      code: data.statusCode,
+      status: true,
+    });
     router.push("/help_text");
   };
 
@@ -88,7 +99,12 @@ export default function DashboardSectionOrganisms({
               <IconContent
                 className="flex flex-center bg-[var(--color-text-gray-hover)] text-white p-2 rounded-[6px] cursor-pointer"
                 icon={<IconPlus />}
-                onClick={() => setModalCreate(true)}
+                onClick={() =>
+                  setModalCreate({
+                    ...modalCreate,
+                    status: true,
+                  })
+                }
               />
             </div>
             <ManageColumn
@@ -110,13 +126,14 @@ export default function DashboardSectionOrganisms({
             <IconReload />
           </span>
         </div>
-        {modalCreate && (
+        {modalCreate.status && (
           <Modal
             open={modalCreate}
             setOpen={setModalCreate}
             size="md"
             title="Create text"
             subtitle=""
+            returnPage="help_text"
           >
             <form
               className="w-[100%] flex flex-col gap-3"
@@ -191,15 +208,16 @@ export default function DashboardSectionOrganisms({
             </form>
           </Modal>
         )}
-        {modalSave && (
+        {modalSave.status && (
           <Modal
             open={modalSave}
             setOpen={setModalSave}
             size="sm"
             title=""
             subtitle=""
+            returnPage="help_text"
           >
-            Success create text!
+            <p>{modalSave.message}</p>
           </Modal>
         )}
       </Section>

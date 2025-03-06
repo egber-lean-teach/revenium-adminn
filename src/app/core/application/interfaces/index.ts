@@ -4,6 +4,8 @@ import type { IList } from "./list.interface";
 import type { IText } from "./text.interface";
 import type { ICookie } from "./cookie.interface";
 import type { IModalMessage } from "./modalMessage.interface";
+import { initialModalMessage } from "./modalMessage.interface";
+import { textInitial } from "./text.interface";
 
 export {
   IBucket,
@@ -13,4 +15,6 @@ export {
   IText,
   ICookie,
   IModalMessage,
+  initialModalMessage,
+  textInitial,
 };

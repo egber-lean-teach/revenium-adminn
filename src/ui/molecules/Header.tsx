@@ -6,9 +6,13 @@ import Modal from "./Modal";
 import { useState } from "react";
 import { getCookies, deleteCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
+import {
+  IModalMessage,
+  initialModalMessage,
+} from "@/app/core/application/interfaces";
 
 export default function Header(): React.ReactNode {
-  const [open, setOpen] = useState<boolean>(false);
+  const [open, setOpen] = useState<IModalMessage>(initialModalMessage);
   const [showModalUser, setShowModalUser] = useState<boolean>(false);
   const router = useRouter();
 
@@ -42,19 +46,35 @@ export default function Header(): React.ReactNode {
         <IconContent
           className="bg-[var(--color-gray-light-two)] hover:bg-[var(--color-gray-light-three)] p-2 rounded-[50%] cursor-pointer"
           icon={<IconLogout />}
-          onClick={() => setOpen(!open)}
+          onClick={() =>
+            setOpen({
+              message: "",
+              code: 0,
+              status: !open.status,
+            })
+          }
         />
       </div>
-      {open && (
+      {open.status && (
         <Modal
           title="Please Confirm"
           size="sm"
           subtitle="Are you sure you want yo logout?"
           open={open}
           setOpen={setOpen}
+          returnPage="help_text"
         >
           <div className="flex justify-end items-center gap-2">
-            <Button variant="second" onClick={() => setOpen(false)}>
+            <Button
+              variant="second"
+              onClick={() =>
+                setOpen({
+                  message: "",
+                  code: 0,
+                  status: false,
+                })
+              }
+            >
               No
             </Button>
             <Button variant="third" onClick={handleLogout}>

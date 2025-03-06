@@ -75,7 +75,7 @@ export default class UtilApplication {
     subcategory: string,
     name: string
   ): string {
-    return `${category}Category%${subcategory}Subcategory%${name}Name`;
+    return `${category}Category_${subcategory}Subcategory_${name}Name_${category[0]}${subcategory[0]}${name[0]}Combination`;
   }
 
   public static verifySpecialSymbols(value: string): boolean {

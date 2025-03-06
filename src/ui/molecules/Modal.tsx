@@ -1,5 +1,8 @@
+"use client";
+import { IModalMessage } from "@/app/core/application/interfaces";
 import { IConClose } from "../../../public/icons";
 import { IconContent } from "../atoms";
+import { useRouter } from "next/navigation";
 
 interface ISize {
   sm: string;
@@ -12,8 +15,9 @@ interface IModalProps {
   size: "sm" | "md" | "lg";
   title: string;
   subtitle?: string;
-  open: boolean;
-  setOpen: (value: boolean) => void;
+  open: IModalMessage;
+  setOpen: (value: IModalMessage) => void;
+  returnPage?: string;
 }
 export default function Modal({
   children,
@@ -22,7 +26,9 @@ export default function Modal({
   subtitle,
   open,
   setOpen,
+  returnPage,
 }: IModalProps): React.ReactNode {
+  const router = useRouter();
   const sizeModal: ISize = {
     sm: "w-[25vw]",
     md: "w-[50vw]",
@@ -41,7 +47,14 @@ export default function Modal({
           <IconContent
             icon={<IConClose />}
             className="text-[var(--color-text-gray)] cursor-pointer"
-            onClick={() => setOpen(!open)}
+            onClick={() => {
+              setOpen({
+                message: "",
+                code: 0,
+                status: !open.status,
+              });
+              router.push(`/${returnPage}`);
+            }}
           />
         </div>
         <p className="text-[var(--color-text-gray)] text-[.9rem] mb-4">

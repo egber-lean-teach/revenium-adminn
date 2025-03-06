@@ -32,7 +32,7 @@ export class UtilApplicationInternal {
     subcategory: string,
     name: string
   ): string {
-    const generate: string = `${category}Category_${subcategory}Subcategory_${name}Name_${category[0]}${subcategory[0]}${name[0]}`;
+    const generate: string = `${category}Category_${subcategory}Subcategory_${name}Name_${category[0]}${subcategory[0]}${name[0]}Combination`;
     console.log("generate", generate);
     return generate;
   }

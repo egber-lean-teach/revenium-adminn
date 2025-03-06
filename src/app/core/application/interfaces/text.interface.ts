@@ -5,3 +5,11 @@ export interface IText {
   id: string;
   description: string;
 }
+
+export const textInitial: IText = {
+  category: "",
+  subcategory: "",
+  name: "",
+  id: "",
+  description: "",
+};

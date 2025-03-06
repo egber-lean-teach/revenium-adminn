@@ -27,7 +27,7 @@ export async function GET(): Promise<NextResponse> {
 }
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
-  const { category, subcategory, name, description } = await req.json();
+  const { category, subcategory, name, description, id } = await req.json();
   const verifyParams = UtilApplication.verifyAllParams(
     category,
     subcategory,
@@ -51,23 +51,27 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       description,
       name,
       subcategory,
-      id: "",
+      id,
     });
-
     if (!textCreate) {
-      return NextResponse.json(
-        {
-          message: "Is not support special symbols",
-          statusCode: 400,
-          data: [],
-        },
-        { status: 400 }
-      );
+      return NextResponse.json({
+        message: "Is required id. Try again...",
+        statusCode: 400,
+        data: [],
+      });
+    }
+
+    if (textCreate?.message === "found") {
+      return NextResponse.json({
+        message: "Text Exists. Try again!",
+        statusCode: 400,
+        data: [],
+      });
     }
 
     return NextResponse.json(
       {
-        message: textCreate,
+        message: textCreate.message,
         statusCode: 201,
         data: [],
       },

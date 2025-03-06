@@ -20,27 +20,15 @@ export default class TextService {
   public async postText(
     newText: IDataItem
   ): Promise<{ message: string } | undefined> {
-    const { category, subcategory, name } = newText;
+    const { id } = newText;
+    if (!id) return;
 
     try {
-      const categoryVerify = UtilApplication.verifySpecialSymbols(category); // Verify exists special Symbols
-      const subcategoryVerify =
-        UtilApplication.verifySpecialSymbols(subcategory);
-      const nameVerify = UtilApplication.verifySpecialSymbols(name);
-
-      if (categoryVerify || subcategoryVerify || nameVerify) return; // Return for show messge is not support symbols
-      const [newCategory, newSubcategory, newName] =
-        UtilApplication.removeSpace(category, subcategory, name); // Get values without underscore
-
-      const key = UtilApplication.generateKey(
-        newCategory,
-        newSubcategory,
-        newName
-      );
-      newText.id = key; // Change value id for new value key
+      const textById = await this.textRepository.getTextById(id);
+      if (textById) return { message: "found" };
 
       const texts: S3Model = await this.textRepository.getTexts(); // Get all texts
-      texts[key] = newText; // Create new text
+      texts[id] = newText; // Create new text
       return await this.textRepository.postText(texts);
     } catch (error: unknown) {
       throw error;
