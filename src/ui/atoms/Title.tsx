@@ -1,6 +1,5 @@
 "use client";
 import { useTitleState } from "@/app/core/application/global-state";
-import { LoadingContent } from "../molecules";
 import Loading from "./Loading";
 
 export default function Title(): React.ReactNode {

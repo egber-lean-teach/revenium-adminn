@@ -1,5 +1,3 @@
-import { TextService } from "@/app/infrastructure/services";
-
 export class UtilApplicationInternal {
   public static firstFourLetter(value: string): string {
     const [letter1, letter2, letter3, letter4] = value;

@@ -10,7 +10,6 @@ import Copy from "./Copy";
 import Input from "./input";
 import Select from "./Select";
 import TextArea from "./TextArea";
-import VerifyChange from "./VerifyChange";
 
 export {
   Button,
@@ -25,5 +24,4 @@ export {
   Input,
   Select,
   TextArea,
-  VerifyChange,
 };

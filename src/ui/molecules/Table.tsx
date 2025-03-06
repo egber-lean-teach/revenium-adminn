@@ -1,10 +1,9 @@
 "use client";
 
-import { Button, Copy, IconContent, IconText, Loading } from "../atoms";
-import { IConCopy, IconDown, IconEdit, IConTrash } from "../../../public/icons";
+import { Button, Copy, Loading } from "../atoms";
+import { IconEdit, IConTrash } from "../../../public/icons";
 import { ITextResponseComplete } from "@/app/core/application/dto/textResponse";
 import { UtilApplicationInternal } from "@/app/core/application/utils/util.application";
-import ModalContent from "./ModalContent";
 import { useState } from "react";
 import { TextService } from "@/app/infrastructure/services";
 import { useRouter } from "next/navigation";
@@ -31,13 +30,9 @@ export default function Table({ headers, body }: ITableProps): React.ReactNode {
     console.log("edit");
   };
 
-  const handleClickMore = (): void => {
-    console.log("more");
-  };
-
   const handleClickDelete = async (): Promise<void> => {
     const textId: string = modalDelete.message.split("/")[0];
-    const data = await TextService.deleteText(textId);
+    await TextService.deleteText(textId);
 
     setModalDelete({
       message: "",

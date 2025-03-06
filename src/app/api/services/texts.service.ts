@@ -1,7 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import TextRepository from "@/app/api/repositories/texts.repository";
 import { IDataItem, S3Model } from "@/app/api/models";
-import UtilApplication from "../utils/util.application";
 
 @injectable()
 export default class TextService {

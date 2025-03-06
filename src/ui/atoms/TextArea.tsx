@@ -1,5 +1,7 @@
 interface ITextAreaProps
-  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {}
+  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+  name?: string;
+}
 export default function TextArea({
   ...props
 }: ITextAreaProps): React.ReactNode {

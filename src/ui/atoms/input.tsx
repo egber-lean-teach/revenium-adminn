@@ -1,4 +1,6 @@
-interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
+interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  name?: string;
+}
 export default function Input({ ...props }: IInputProps): React.ReactNode {
   return (
     <input

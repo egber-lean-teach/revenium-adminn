@@ -1,14 +1,11 @@
 "use client";
 import { ITextResponseComplete } from "@/app/core/application/dto/textResponse";
-import { Button, IconContent, ManageColumn, Pagination, Title } from "../atoms";
+import { Button, IconContent, ManageColumn, Title } from "../atoms";
 import {
   FormField,
   FormFieldSelect,
   FormFieldTextArea,
-  FormFielSelect,
-  LoadingContent,
   Modal,
-  ModalContent,
   Section,
   Table,
 } from "../molecules";
@@ -16,7 +13,6 @@ import {
   IconList,
   IconPlus,
   IconReload,
-  IConSave,
   IConSaveTwo,
 } from "../../../public/icons";
 import { useModalLoadingContentState } from "@/app/core/application/global-state";
@@ -42,8 +38,9 @@ export default function DashboardSectionOrganisms({
   subcategories,
 }: IDashboardSectionOrganismsProps): React.ReactNode {
   const router = useRouter();
-  const { modalLoadingContent, setModalLoadingContent } =
-    useModalLoadingContentState((state) => state);
+  const { setModalLoadingContent } = useModalLoadingContentState(
+    (state) => state
+  );
   const [modalCreate, setModalCreate] =
     useState<IModalMessage>(initialModalMessage);
   const [modalSave, setModalSave] =

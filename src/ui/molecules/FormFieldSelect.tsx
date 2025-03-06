@@ -1,5 +1,5 @@
 "use client";
-import { use, useEffect, useState } from "react";
+import { useState } from "react";
 import { IconCheck, IConClose, IconPlus } from "../../../public/icons";
 import { Button, IconContent, Input, Select } from "../atoms";
 import { IText } from "@/app/core/application/interfaces";

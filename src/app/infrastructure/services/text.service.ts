@@ -31,7 +31,7 @@ class TextService {
         "texts"
       );
       const categories = Object.entries(response.data).map(
-        ([key, value]) => value.category
+        ([, value]) => value.category
       );
       return categories;
     } catch (error: unknown) {
@@ -45,7 +45,7 @@ class TextService {
         "texts"
       );
       const subCategories = Object.entries(response.data).map(
-        ([key, value]) => value.subcategory
+        ([, value]) => value.subcategory
       );
       return subCategories;
     } catch (error: unknown) {
