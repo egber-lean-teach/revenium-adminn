@@ -1,11 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  typescript: {
-    ignoreBuildErrors: false,
-  },
-  webpack(config) {
-    return config;
-  },
+  output: "export",
 };
 
 export default nextConfig;
