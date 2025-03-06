@@ -137,7 +137,7 @@ export default function Table({ headers, body }: ITableProps): React.ReactNode {
               No
             </Button>
             <Button variant="third" onClick={handleClickDelete}>
-              Yes I'm sure
+              Yes I&apos;m sure
             </Button>
           </div>
         </Modal>
