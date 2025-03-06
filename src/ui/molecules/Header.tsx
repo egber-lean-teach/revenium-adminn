@@ -77,7 +77,7 @@ export default function Header(): React.ReactNode {
             >
               No
             </Button>
-            <Button variant="third" onClick={handleClickDelete}>
+            <Button variant="third" onClick={handleLogout}>
               Yes I&apos;m sure
             </Button>
           </div>
