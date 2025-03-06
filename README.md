@@ -45,3 +45,11 @@ page.tsx
 -molecules
 -organisms
 middleware.ts
+.gitignore
+README.md
+eslint.config.mjs
+package-lock.json
+package.json
+postcss.config.mjs
+tsconfig.json
+next.config.mjs
