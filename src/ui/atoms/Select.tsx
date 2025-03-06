@@ -9,7 +9,7 @@ export default function Select<B>({
   id,
   options,
   ...props
-}: ISelectProps<B>): React.ReactNode {
+}: ISelectProps<B>) {
   return (
     <select
       className="focus:outline-0 p-2 border-[var(--color-gray-light-three)] border-1 rounded-[6px]"
