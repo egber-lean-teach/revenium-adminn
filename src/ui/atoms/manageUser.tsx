@@ -31,6 +31,6 @@ export default function ManageUser({
         imageUrl,
       });
     }
-  }, [user]);
+  }, [user, setUser]);
   return <>{children}</>;
 }
