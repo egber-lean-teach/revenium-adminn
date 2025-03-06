@@ -1,5 +1,6 @@
 export class UtilInfrastructure {
-  private baseUrl: string = "https://main.d1ygfq811m2mxb.amplifyapp.com/api";
+  private baseUrl: string =
+    `${process.env.NEXT_PUBLIC_SITE_URL}/api` || "http://localhost:3000/api";
 
   constructor(baseUrlClient?: string) {
     this.baseUrl = baseUrlClient || this.baseUrl;
