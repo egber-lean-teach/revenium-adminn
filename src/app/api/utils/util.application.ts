@@ -4,7 +4,7 @@ import {
   PutObjectCommand,
   PutObjectCommandInput,
 } from "@aws-sdk/client-s3";
-import { IBucket, IBucketCreate } from "@/app/core/application/interfaces";
+import { IBucket } from "@/app/core/application/interfaces";
 import { injectable } from "tsyringe";
 import s3Data from "@/app/api/config/s3";
 import { S3Model } from "@/app/api/models";
