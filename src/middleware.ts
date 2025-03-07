@@ -1,15 +1,15 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
-const tenantKeys = {
-  tenant1: {
-    publishableKey:
-      "pk_test_ZHJpdmluZy1wZWFjb2NrLTIzLmNsZXJrLmFjY291bnRzLmRldiQ",
-    secretKey: "sk_test_6Ag9d6MI85UWzl76FijEa7tUzuNujJQc4BoPQj5pKI",
-    signInurl: "https://main.d2wvpf5gz3ipwm.amplifyapp.com/sign-in",
-    signUpUrl: "https://main.d2wvpf5gz3ipwm.amplifyapp.com/sign-up",
-    domain: "https://main.d2wvpf5gz3ipwm.amplifyapp.com",
-  },
-};
+// const tenantKeys = {
+//   tenant1: {
+//     publishableKey:
+//       "pk_test_ZHJpdmluZy1wZWFjb2NrLTIzLmNsZXJrLmFjY291bnRzLmRldiQ",
+//     secretKey: "sk_test_6Ag9d6MI85UWzl76FijEa7tUzuNujJQc4BoPQj5pKI",
+//     signInurl: "https://main.d2wvpf5gz3ipwm.amplifyapp.com/sign-in",
+//     signUpUrl: "https://revenium-admin.netlify.app/api/sign-up",
+//     domain: "https://revenium-admin.netlify.app/api",
+//   },
+// };
 
 const isPublicRoute = createRouteMatcher([
   "/sign-in(.*)",
@@ -21,14 +21,14 @@ const isPublicRoute = createRouteMatcher([
 export default clerkMiddleware(
   async (auth, req) => {
     if (isPublicRoute(req)) await auth.protect();
-  },
-  () => ({
-    secretKey: tenantKeys.tenant1.secretKey,
-    publishableKey: tenantKeys.tenant1.publishableKey,
-    signInUrl: tenantKeys.tenant1.signInurl,
-    signUpUrl: tenantKeys.tenant1.signUpUrl,
-    domain: tenantKeys.tenant1.domain,
-  })
+  }
+  // () => ({
+  //   secretKey: tenantKeys.tenant1.secretKey,
+  //   publishableKey: tenantKeys.tenant1.publishableKey,
+  //   signInUrl: tenantKeys.tenant1.signInurl,
+  //   signUpUrl: tenantKeys.tenant1.signUpUrl,
+  //   domain: tenantKeys.tenant1.domain,
+  // })
 );
 
 export const config = {
