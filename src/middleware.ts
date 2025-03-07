@@ -3,12 +3,12 @@ import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 const tenantKeys = {
   tenant1: {
     publishableKey:
-      "pk_test_ZHJpdmluZy1wZWFjb2NrLTIzLmNsZXJrLmFjY291bnRzLmRldiQ",
-    secretKey: "sk_test_6Ag9d6MI85UWzl76FijEa7tUzuNujJQc4BoPQj5pKI",
+      "pk_live_ZHJpdmluZy1wZWFjb2NrLTIzLmNsZXJrLmFjY291bnRzLmRldiQ",
+    secretKey: "sk_live_6Ag9d6MI85UWzl76FijEa7tUzuNujJQc4BoPQj5pKI",
     signInurl: "https://main.d2wvpf5gz3ipwm.amplifyapp.com/sign-in",
     signUpUrl: "https://main.d2wvpf5gz3ipwm.amplifyapp.com/sign-up",
     domain: "https://main.d2wvpf5gz3ipwm.amplifyapp.com",
-    afterSignInUrl: "https://main.d2wvpf5gz3ipwm.amplifyapp.com/help_text",
+    forceRedirectUrl: "https://main.d2wvpf5gz3ipwm.amplifyapp.com/help_text",
   },
 };
 const isPublicRoute = createRouteMatcher([
@@ -28,7 +28,7 @@ export default clerkMiddleware(
     signInUrl: tenantKeys.tenant1.signInurl,
     signUpUrl: tenantKeys.tenant1.signUpUrl,
     domain: tenantKeys.tenant1.domain,
-    afterSignInUrl: tenantKeys.tenant1.afterSignInUrl,
+    forceRedirectUrl: tenantKeys.tenant1.forceRedirectUrl,
   })
 );
 
@@ -38,5 +38,6 @@ export const config = {
     "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
     // Always run for API routes
     "/(api|trpc)(.*)",
+    "/help_text",
   ],
 };
