@@ -6,8 +6,8 @@ const tenantKeys = {
       "pk_test_ZHJpdmluZy1wZWFjb2NrLTIzLmNsZXJrLmFjY291bnRzLmRldiQ",
     secretKey: "sk_test_6Ag9d6MI85UWzl76FijEa7tUzuNujJQc4BoPQj5pKI",
     signInurl: "https://main.d2wvpf5gz3ipwm.amplifyapp.com/sign-in",
-    signUpUrl: "https://revenium-admin.netlify.app/api/sign-up",
-    domain: "https://revenium-admin.netlify.app/api",
+    signUpUrl: "https://main.d2wvpf5gz3ipwm.amplifyapp.com/sign-up",
+    domain: "https://main.d2wvpf5gz3ipwm.amplifyapp.com",
   },
 };
 
