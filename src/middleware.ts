@@ -1,16 +1,28 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
+const tenantKeys = {
+  tenant1: {
+    publishableKey:
+      "pk_test_ZHJpdmluZy1wZWFjb2NrLTIzLmNsZXJrLmFjY291bnRzLmRldiQ",
+    secretKey: "sk_test_6Ag9d6MI85UWzl76FijEa7tUzuNujJQc4BoPQj5pKI",
+  },
+};
+
 const isPublicRoute = createRouteMatcher([
   "/sign-in(.*)",
   "/api/texts",
   "api/cookies",
 ]);
 
-export default clerkMiddleware(async (auth, request) => {
-  if (!isPublicRoute(request)) {
-    await auth.protect();
-  }
-});
+export default clerkMiddleware(
+  async (auth, req) => {
+    if (isPublicRoute(req)) await auth.protect();
+  },
+  () => ({
+    secretKey: tenantKeys.tenant1.secretKey,
+    publishableKey: tenantKeys.tenant1.publishableKey,
+  })
+);
 
 export const config = {
   matcher: [
