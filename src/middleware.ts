@@ -5,9 +5,9 @@ const tenantKeys = {
     publishableKey:
       "pk_test_ZHJpdmluZy1wZWFjb2NrLTIzLmNsZXJrLmFjY291bnRzLmRldiQ",
     secretKey: "sk_test_6Ag9d6MI85UWzl76FijEa7tUzuNujJQc4BoPQj5pKI",
-    signInurl: "/sign-in",
-    signUpUrl: "/sign-up",
-    domain: "https://main.d2wvpf5gz3ipwm.amplifyapp.com",
+    signInurl: "https://main.d1k5kgrcwygb2h.amplifyapp.com/sign-in",
+    signUpUrl: "https://main.d1k5kgrcwygb2h.amplifyapp.com/sign-up",
+    domain: "https://main.d1k5kgrcwygb2h.amplifyapp.com",
   },
 };
 const isPublicRoute = createRouteMatcher([
