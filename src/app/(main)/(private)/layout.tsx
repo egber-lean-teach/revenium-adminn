@@ -14,7 +14,7 @@ export default function RootLayout({
   return (
     <>
       <Header />
-      <div className="flex w-[100vw]">
+      <div className="flex w-[99vw] overflow-hidden">
         <Sidebar />
         <main className="w-[82vw] p-6">{children}</main>
         <LoadingContent />
