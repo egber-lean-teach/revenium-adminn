@@ -1,7 +1,7 @@
 "use client";
 
 import { Button, Copy, Loading } from "../atoms";
-import { IconEdit, IConTrash } from "../../../public/icons";
+import { IconEdit, IConSaveTwo, IConTrash } from "../../../public/icons";
 import { ITextResponseComplete } from "@/app/core/application/dto/textResponse";
 import { UtilApplicationInternal } from "@/app/core/application/utils/util.application";
 import { useState } from "react";
@@ -11,8 +11,13 @@ import Modal from "./Modal";
 import {
   IModalMessage,
   initialModalMessage,
+  IText,
+  textInitial,
 } from "@/app/core/application/interfaces";
 import { useModalLoadingContentState } from "@/app/core/application/global-state";
+import FormFieldSelect from "./FormFieldSelect";
+import FormFieldTextArea from "./FormFieldTextArea";
+import FormField from "./FormField";
 
 interface ITableProps {
   headers: string[];
@@ -23,11 +28,30 @@ export default function Table({ headers, body }: ITableProps): React.ReactNode {
   const { setModalLoadingContent } = useModalLoadingContentState(
     (state) => state
   );
+
+  const [modalEdit, setModalEdit] =
+    useState<IModalMessage>(initialModalMessage);
+  const [editFormData, setEditFormData] = useState<IText>(textInitial);
   const [modalDelete, setModalDelete] =
     useState<IModalMessage>(initialModalMessage);
+  const [showErrorEdit, setShowErrorEdit] = useState<boolean>(false);
   const router = useRouter();
-  const handleClickEdit = (): void => {
-    console.log("edit");
+
+  const handleClickEdit = async (
+    e: React.ChangeEvent<HTMLFormElement>
+  ): Promise<void> => {
+    e.preventDefault();
+    const textId: string = modalEdit.message;
+    if (!textId) return;
+    if (
+      !editFormData.category ||
+      !editFormData.description ||
+      !editFormData.name ||
+      !editFormData.subcategory
+    )
+      return;
+    const data = await TextService.updateText(editFormData, textId);
+    console.log("data update", data);
   };
 
   const handleClickDelete = async (): Promise<void> => {
@@ -90,7 +114,16 @@ export default function Table({ headers, body }: ITableProps): React.ReactNode {
                 <td>{value.description}</td>
                 <td>
                   <div className="flex gap-2">
-                    <Button variant="default" onClick={handleClickEdit}>
+                    <Button
+                      variant="default"
+                      onClick={() =>
+                        setModalEdit({
+                          message: `${value.id}`,
+                          code: 0,
+                          status: true,
+                        })
+                      }
+                    >
                       <IconEdit />
                     </Button>
                     <Button
@@ -140,6 +173,88 @@ export default function Table({ headers, body }: ITableProps): React.ReactNode {
               Yes I&apos;m sure
             </Button>
           </div>
+        </Modal>
+      )}
+      {modalEdit.status && (
+        <Modal
+          open={modalEdit}
+          setOpen={setModalEdit}
+          size="md"
+          title="Update text"
+          subtitle=""
+          returnPage="help_text"
+        >
+          <form
+            className="w-[100%] flex flex-col gap-3"
+            onSubmit={handleClickEdit}
+          >
+            <FormFieldSelect
+              label="Category"
+              name="category"
+              errors={["Is necesary a value", "Spaces are not allowed"]}
+              id="category"
+              options={[""]}
+              nameCreate="newCategory"
+              placeholderCreate="Create new category"
+              formCreate={editFormData}
+              setFormCreate={setEditFormData}
+            />
+
+            <FormFieldSelect
+              label="Subcategory"
+              name="subcategory"
+              errors={["Is necesary a value", "Spaces are not allowed"]}
+              id="subcategory"
+              options={[""]}
+              nameCreate="newSubcategory"
+              placeholderCreate="Create new subcategory"
+              formCreate={editFormData}
+              setFormCreate={setEditFormData}
+            />
+            <FormField
+              label="Name"
+              name="name"
+              placeholder=""
+              errors={["Is necesary a value", "Spaces are not allowed"]}
+              type="text"
+              formCreate={editFormData}
+              setFormCreate={setEditFormData}
+            />
+            <FormFieldTextArea
+              error=""
+              label="Description"
+              name="description"
+              placeholder="Enter description"
+              formCreate={editFormData}
+              setFormCreate={setEditFormData}
+            />
+            {showErrorEdit && (
+              <span className="text-[.9rem] text-red-500">
+                Error. Is required all params
+              </span>
+            )}
+            <span className="text-[.9rem] text-[var(--color-text-gray)] flex justify-end">
+              Check the ✔️ for save the value
+            </span>
+            <div className="flex justify-end">
+              <Button
+                variant="third"
+                onClick={() => {
+                  console.log("form data", editFormData);
+                  setEditFormData({
+                    ...editFormData,
+                    ["id"]: UtilApplicationInternal.generateKey(
+                      editFormData.category,
+                      editFormData.subcategory,
+                      editFormData.name
+                    ),
+                  });
+                }}
+              >
+                <IConSaveTwo onClick={() => console.log("click")} />
+              </Button>
+            </div>
+          </form>
         </Modal>
       )}
     </>
