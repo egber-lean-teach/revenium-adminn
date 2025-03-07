@@ -1,5 +1,5 @@
 export class UtilInfrastructure {
-  private baseUrl: string = `https://revenium-admin.netlify.app/api`;
+  private baseUrl: string = `https://main.d3gm1edct9l9ya.amplifyapp.com/api`;
 
   constructor(baseUrlClient?: string) {
     this.baseUrl = baseUrlClient || this.baseUrl;
