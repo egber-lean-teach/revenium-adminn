@@ -1,6 +1,6 @@
 "use client";
 import { ITextResponseComplete } from "@/app/core/application/dto/textResponse";
-import { Button, IconContent, ManageColumn, Title } from "../atoms";
+import { Button, IconContent, ManageColumn, Title } from "@/app/ui/atoms";
 import {
   FormField,
   FormFieldSelect,
@@ -8,13 +8,8 @@ import {
   Modal,
   Section,
   Table,
-} from "../molecules";
-import {
-  IconList,
-  IconPlus,
-  IconReload,
-  IConSaveTwo,
-} from "../../../public/icons";
+} from "@/app/ui/molecules";
+import { IconList, IconPlus, IconReload, IConSaveTwo } from "@/public/icons";
 import { useModalLoadingContentState } from "@/app/core/application/global-state";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
