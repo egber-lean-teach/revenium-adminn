@@ -34,7 +34,7 @@ export default function Table({ headers, body }: ITableProps): React.ReactNode {
   const [editFormData, setEditFormData] = useState<IText>(textInitial);
   const [modalDelete, setModalDelete] =
     useState<IModalMessage>(initialModalMessage);
-  const [showErrorEdit, setShowErrorEdit] = useState<boolean>(false);
+  const [showErrorEdit] = useState<boolean>(false);
   const router = useRouter();
 
   const handleClickEdit = async (
