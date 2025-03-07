@@ -8,7 +8,6 @@ const tenantKeys = {
     signInurl: "https://main.d2wvpf5gz3ipwm.amplifyapp.com/sign-in",
     signUpUrl: "https://main.d2wvpf5gz3ipwm.amplifyapp.com/sign-up",
     domain: "https://main.d2wvpf5gz3ipwm.amplifyapp.com",
-    forceRedirectUrl: "https://main.d2wvpf5gz3ipwm.amplifyapp.com/help_text",
   },
 };
 const isPublicRoute = createRouteMatcher([
@@ -28,7 +27,6 @@ export default clerkMiddleware(
     signInUrl: tenantKeys.tenant1.signInurl,
     signUpUrl: tenantKeys.tenant1.signUpUrl,
     domain: tenantKeys.tenant1.domain,
-    forceRedirectUrl: tenantKeys.tenant1.forceRedirectUrl,
   })
 );
 
