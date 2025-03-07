@@ -2,6 +2,7 @@ import {
   S3Client,
   GetObjectCommand,
   PutObjectCommand,
+  PutObjectCommandInput,
 } from "@aws-sdk/client-s3";
 import { IBucket, IBucketCreate } from "@/app/core/application/interfaces";
 import { injectable } from "tsyringe";
@@ -45,11 +46,12 @@ export default class UtilApplication {
   }
 
   public async saveJsonS3(newData: S3Model): Promise<{ message: string }> {
-    const params: IBucketCreate<string> = {
+    const params: PutObjectCommandInput = {
       Bucket: s3Data.bucketName,
       Key: s3Data.key,
       Body: JSON.stringify(newData),
       ContentType: "application/json",
+      ACL: "public-read",
     };
 
     try {
