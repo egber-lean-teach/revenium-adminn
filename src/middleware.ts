@@ -5,8 +5,8 @@ const tenantKeys = {
     publishableKey:
       "pk_test_ZHJpdmluZy1wZWFjb2NrLTIzLmNsZXJrLmFjY291bnRzLmRldiQ",
     secretKey: "sk_test_6Ag9d6MI85UWzl76FijEa7tUzuNujJQc4BoPQj5pKI",
-    signInurl: "/sign-in",
-    signUpUrl: "/sign-up",
+    signInurl: "https://main.d2wvpf5gz3ipwm.amplifyapp.com/sign-in",
+    signUpUrl: "https://main.d2wvpf5gz3ipwm.amplifyapp.com/sign-up",
     domain: "https://main.d2wvpf5gz3ipwm.amplifyapp.com",
   },
 };
@@ -14,8 +14,8 @@ const tenantKeys = {
 const isPublicRoute = createRouteMatcher([
   "/sign-in(.*)",
   "/sign-up(.*)",
-  "/api/texts",
-  "api/cookies",
+  "/api/texts(.*)",
+  "api/cookies(.*)",
 ]);
 
 export default clerkMiddleware(
