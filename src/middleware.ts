@@ -3,14 +3,13 @@ import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 const tenantKeys = {
   tenant1: {
     publishableKey:
-      "pk_test_ZHJpdmluZy1wZWFjb2NrLTIzLmNsZXJrLmFjY291bnRzLmRldiQ",
-    secretKey: "sk_test_6Ag9d6MI85UWzl76FijEa7tUzuNujJQc4BoPQj5pKI",
+      "pk_live_ZHJpdmluZy1wZWFjb2NrLTIzLmNsZXJrLmFjY291bnRzLmRldiQ",
+    secretKey: "sk_live_6Ag9d6MI85UWzl76FijEa7tUzuNujJQc4BoPQj5pKI",
     signInurl: "https://main.d2wvpf5gz3ipwm.amplifyapp.com/sign-in",
     signUpUrl: "https://main.d2wvpf5gz3ipwm.amplifyapp.com/sign-up",
     domain: "https://main.d2wvpf5gz3ipwm.amplifyapp.com",
   },
 };
-
 const isPublicRoute = createRouteMatcher([
   "/sign-in(.*)",
   "/sign-up(.*)",
