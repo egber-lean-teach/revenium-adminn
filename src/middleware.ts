@@ -1,34 +1,6 @@
-import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+import { clerkMiddleware } from "@clerk/nextjs/server";
 
-const tenantKeys = {
-  tenant1: {
-    publishableKey:
-      "pk_test_ZHJpdmluZy1wZWFjb2NrLTIzLmNsZXJrLmFjY291bnRzLmRldiQ",
-    secretKey: "sk_test_6Ag9d6MI85UWzl76FijEa7tUzuNujJQc4BoPQj5pKI",
-    signInurl: "/sign-in",
-    signUpUrl: "/sign-up",
-    domain: "https://main.d2wvpf5gz3ipwm.amplifyapp.com",
-  },
-};
-const isPublicRoute = createRouteMatcher([
-  "/sign-in(.*)",
-  "/sign-up(.*)",
-  "/api/texts(.*)",
-  "api/cookies(.*)",
-]);
-
-export default clerkMiddleware(
-  async (auth, req) => {
-    if (!isPublicRoute(req)) await auth.protect();
-  },
-  () => ({
-    secretKey: tenantKeys.tenant1.secretKey,
-    publishableKey: tenantKeys.tenant1.publishableKey,
-    signInUrl: tenantKeys.tenant1.signInurl,
-    signUpUrl: tenantKeys.tenant1.signUpUrl,
-    domain: tenantKeys.tenant1.domain,
-  })
-);
+export default clerkMiddleware();
 
 export const config = {
   matcher: [
