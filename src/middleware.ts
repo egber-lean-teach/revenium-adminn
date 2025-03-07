@@ -5,8 +5,8 @@ const tenantKeys = {
     publishableKey:
       "pk_test_ZHJpdmluZy1wZWFjb2NrLTIzLmNsZXJrLmFjY291bnRzLmRldiQ",
     secretKey: "sk_test_6Ag9d6MI85UWzl76FijEa7tUzuNujJQc4BoPQj5pKI",
-    signInurl: "https://main.d2wvpf5gz3ipwm.amplifyapp.com/sign-in",
-    signUpUrl: "https://main.d2wvpf5gz3ipwm.amplifyapp.com/sign-up",
+    signInurl: "/sign-in",
+    signUpUrl: "/sign-up",
     domain: "https://main.d2wvpf5gz3ipwm.amplifyapp.com",
   },
 };

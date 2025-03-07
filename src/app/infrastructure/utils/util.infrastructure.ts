@@ -1,4 +1,5 @@
 export class UtilInfrastructure {
+  //private baseUrl: string = `https://main.d2wvpf5gz3ipwm.amplifyapp.com/api`;
   private baseUrl: string = `https://main.d2wvpf5gz3ipwm.amplifyapp.com/api`;
 
   constructor(baseUrlClient?: string) {
